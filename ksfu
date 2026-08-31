@@ -1,0 +1,37 @@
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local vim = game:GetService("VirtualInputManager")
+if character and character:FindFirstChild("HumanoidRootPart") then
+    character.HumanoidRootPart.CFrame = CFrame.new(19.463037490844727, 2859.360107421875, 326)
+end
+workspace:WaitForChild("eoksaccount")
+task.wait(0.5)
+print("Moving on..")
+vim:SendKeyEvent(true, Enum.KeyCode.One, false, nil)
+task.wait(0.05)
+vim:SendKeyEvent(false, Enum.KeyCode.One, false, nil)
+task.wait(1)
+character.Humanoid.Health = 0
+player.CharacterAdded:Connect(function(newCharacter)
+    local root = newCharacter:WaitForChild("HumanoidRootPart")
+    if newCharacter and newCharacter:FindFirstChild("HumanoidRootPart") then
+        newCharacter.HumanoidRootPart.CFrame = CFrame.new(19.463037490844727, 2859.360107421875, 326)
+    end
+    local backpack = player:WaitForChild("Backpack")
+    local tool = backpack:FindFirstChildOfClass("Tool")
+    while not tool do
+        local added = backpack.ChildAdded:Wait()
+        if added:IsA("Tool") then
+            tool = added
+        end
+    end
+    print("Moving on..")
+    vim:SendKeyEvent(true, Enum.KeyCode.One, false, nil)
+    task.wait(0.05)
+    vim:SendKeyEvent(false, Enum.KeyCode.One, false, nil)
+    task.wait(1)
+    local humanoid = newCharacter:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.Health = 0
+    end
+end)
