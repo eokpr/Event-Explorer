@@ -2,19 +2,23 @@ local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local vim = game:GetService("VirtualInputManager")
 if character and character:FindFirstChild("HumanoidRootPart") then
+    if debug == true then print("Teleporting...")
     character.HumanoidRootPart.CFrame = CFrame.new(19.463037490844727, 2859.360107421875, 326)
 end
 workspace:WaitForChild("eoksaccount")
 task.wait(0.5)
-print("Moving on..")
+    if debug == true then print("Moving on..") end
 vim:SendKeyEvent(true, Enum.KeyCode.One, false, nil)
 task.wait(0.05)
 vim:SendKeyEvent(false, Enum.KeyCode.One, false, nil)
 task.wait(1)
+    if debug == true then print("Resetting..") end
 character.Humanoid.Health = 0
 player.CharacterAdded:Connect(function(newCharacter)
+    if debug == true then print("Reset detected. Running macro")
     local root = newCharacter:WaitForChild("HumanoidRootPart")
     if newCharacter and newCharacter:FindFirstChild("HumanoidRootPart") then
+    if debug == true then print("Teleporting...")
         newCharacter.HumanoidRootPart.CFrame = CFrame.new(19.463037490844727, 2859.360107421875, 326)
     end
     local backpack = player:WaitForChild("Backpack")
@@ -25,11 +29,13 @@ player.CharacterAdded:Connect(function(newCharacter)
             tool = added
         end
     end
-    print("Moving on..")
+    if debug == true then
+print("Moving on..")
+end
     vim:SendKeyEvent(true, Enum.KeyCode.One, false, nil)
     task.wait(0.05)
     vim:SendKeyEvent(false, Enum.KeyCode.One, false, nil)
-    task.wait(1)
+    task.wait(7.5)
     local humanoid = newCharacter:FindFirstChild("Humanoid")
     if humanoid then
         humanoid.Health = 0
